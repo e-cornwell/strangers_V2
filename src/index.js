@@ -13,7 +13,7 @@ const App = ()=> {
 
   const register = (ev)=> {
     ev.preventDefault();
-    console.log('hello world')
+    console.log('registered')
     fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/users/register', {
       method: "POST",
       headers: {
@@ -28,6 +28,9 @@ const App = ()=> {
     })
     .then(response => response.json())
     .then(result => {
+      if(!result.success){
+        throw result.error;
+      }
       console.log(result);
     })
     .catch( err => console.log(err));
@@ -50,6 +53,9 @@ const App = ()=> {
     })
     .then(response => response.json())
     .then(result => {
+      if(!result.success){
+        throw result.error;
+      }
       const token = result.data.token;
       window.localStorage.setItem('token', token);
       console.log(token);
@@ -69,7 +75,7 @@ const App = ()=> {
     .catch( err => console.log(err));
   }
 
-  useEffect(()=> {
+  const exchangeTokenForUser = ()=> {
     const token = window.localStorage.getItem('token');
     if(token){
       fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/users/me', {
@@ -85,6 +91,10 @@ const App = ()=> {
       })
       .catch(err => console.log(err));
     }
+  };
+
+  useEffect(()=> {
+    exchangeTokenForUser();
   }, []);
 
   const logout = () => {
