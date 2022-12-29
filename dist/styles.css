@@ -14,3 +14,11 @@ input, button {
 form > * {
   margin: 0.5rem;
 }
+
+.singlePost {
+  border: 1px solid black;
+}
+
+.myPost {
+  background-color: cornsilk;
+}

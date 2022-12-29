@@ -1,42 +1,37 @@
 import ReactDOM from 'react-dom/client';
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Link} from 'react-router-dom';
-import Login from './Login'
+import Login from './components/Login';
+import Register from './components/Register';
+import Posts from './components/Posts';
+import CreatePost from './components/CreatePost';
+
 
 
 const App = ()=> {
-  //const [posts, setPosts] = useState([]);
-  const [registerUsername, setRegisterUsername] = useState('');
-  const [registerPassword, setRegisterPassword] = useState('');
+  const [posts, setPosts] = useState([]);
   const [user, setUser] = useState({});
+  const [token, setToken] = useState(null);
 
-  const register = (ev)=> {
-    ev.preventDefault();
-    console.log('registered')
-    fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/users/register', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        user: {
-          username: registerUsername,
-          password: registerPassword
-        }
+  const fetchPosts = () => {
+    fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts',
+     {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${ token }`
+        },
+      } 
+    )
+      .then(response => response.json())
+      .then(result => {
+        setPosts(result.data.posts);
       })
-    })
-    .then(response => response.json())
-    .then(result => {
-      if(!result.success){
-        throw result.error;
-      }
-      console.log(result);
-    })
-    .catch( err => console.log(err));
-  }
+      .catch(console.error);
+  };
 
-  const exchangeTokenForUser = ()=> {
+  const exchangeTokenForUser = () => {
     const token = window.localStorage.getItem('token');
+
     if(token){
       fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/users/me', {
         headers: {
@@ -48,6 +43,7 @@ const App = ()=> {
       .then(result => {
         const user = result.data;
         setUser(user);
+        setToken(token);
       })
       .catch(err => console.log(err));
     }
@@ -55,7 +51,8 @@ const App = ()=> {
 
   useEffect(()=> {
     exchangeTokenForUser();
-  }, []);
+    fetchPosts();
+  }, [token]);
 
   const logout = () => {
     window.localStorage.removeItem('token');
@@ -81,21 +78,17 @@ const App = ()=> {
       {
         !user._id ? (
         <div>
-          <form onSubmit = { register } >
-            <input 
-              placeholder='username' 
-              value={ registerUsername } 
-              onChange={ ev => setRegisterUsername(ev.target.value) } />
-            <input 
-              placeholder='password'
-              value={ registerPassword } 
-              onChange={ ev => setRegisterPassword(ev.target.value) } />
-            <button>Register</button>
-          </form>
-
+          <Register />
           <Login exchangeTokenForUser={ exchangeTokenForUser }/>
         </div>) : null
       }
+      <nav>
+        <Link to='/createpost'>Create Post</Link>
+      </nav>
+      <Routes> 
+        <Route path='/createpost' element={<div>{<CreatePost token={token}/>}</div>}/>
+      </Routes>   
+      <Posts posts={ posts }/>
     </div>
 
   );

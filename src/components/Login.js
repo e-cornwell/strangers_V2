@@ -37,13 +37,16 @@ const Login = (props)=> {
   return (
     <form onSubmit = { login } >
         <input 
-            placeholder='username'
-            value={ username } 
-            onChange={ ev => setUsername(ev.target.value)} />
+          placeholder='username'
+          value={ username } 
+          onChange={ ev => setUsername(ev.target.value)} 
+        />
         <input 
-            placeholder='password'
-            value={ password } 
-            onChange={ ev => setPassword(ev.target.value)} />
+          placeholder='password'
+          type='password'
+          value={ password } 
+          onChange={ ev => setPassword(ev.target.value)} 
+        />
         <button disabled={ !username || !password }>Login</button>
     </form>
   );
