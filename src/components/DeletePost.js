@@ -1,23 +1,21 @@
-// import React from 'react';
+import React from 'react';
 
-// const DeletePost = () => {
+const DeletePost = async (postIdToDelete, token, posts, setPosts) => {
+    //console.log(token)
 
+    const response = await fetch(`https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts/${postIdToDelete}`, 
+    {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    const json = await response.json();
+    if(json){
+        const newPosts = posts.filter(post => post.id !== postIdToDelete);
+        setPosts(newPosts);
+    }
+};
 
-    
-//     fetch(`https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts/`, 
-//     {
-//         method: "DELETE",
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'Authorization': `Bearer ${token}`
-//         }
-//     })
-//     .then(response => response.json())
-//     .then(result => {
-//       console.log(result);
-//     })
-//     .catch(error => console.log(error));
-
-// };
-
-// export default DeletePost;
+export default DeletePost;

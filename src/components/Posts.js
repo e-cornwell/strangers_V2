@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-//import DeletePost from './DeletePost';
 import EditPost from './EditPost';
 import CreatePost from './CreatePost';
+import DeletePost from './DeletePost';
 
 const Posts = (props) => {
     const [postId, setPostId] = useState(null);
@@ -31,7 +31,7 @@ const Posts = (props) => {
                         <p>Location: {post.location}</p>
                         <p>Will Deliver: {post.willDeliver}</p>
                         { post.isAuthor ? <button onClick={()=> {EditPost, setPostId(post._id)}}>Edit</button> : null }
-                        { post.isAuthor ? <button onClick={()=> setPostId(post._id)}>Delete</button> : null }
+                        { post.isAuthor ? <button onClick={()=> {DeletePost(post._id, token, posts, setPosts)}}>Delete</button> : null }
                     </div>
                 );
             })}

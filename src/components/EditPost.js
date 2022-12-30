@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-
-
 const EditPost = (props) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');

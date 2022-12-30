@@ -16,19 +16,18 @@ const App = ()=> {
   const [token, setToken] = useState(null);
   
 
-  const fetchPosts = () => {
-    fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts',
+  const fetchPosts = async () => {
+    const response = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts',
      {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
       })
-      .then(response => response.json())
-      .then(result => {
-        setPosts(result.data.posts);
-      })
-      .catch(console.error);
+      const json = await response.json();
+      //console.log(json)
+      setPosts(json.data.posts)
+      
   };
 
   const exchangeTokenForUser = () => {
