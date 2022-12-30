@@ -6,22 +6,24 @@ import Register from './components/Register';
 import Posts from './components/Posts';
 import CreatePost from './components/CreatePost';
 
+//import DeletePost from './components/DeletePost';
+
 
 
 const App = ()=> {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState({});
   const [token, setToken] = useState(null);
+  
 
   const fetchPosts = () => {
     fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts',
      {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${ token }`
+          'Authorization': `Bearer ${token}`
         },
-      } 
-    )
+      })
       .then(response => response.json())
       .then(result => {
         setPosts(result.data.posts);
@@ -58,6 +60,7 @@ const App = ()=> {
     window.localStorage.removeItem('token');
     setUser({});
   }
+
   
   return (
     <div>
@@ -86,9 +89,9 @@ const App = ()=> {
         <Link to='/createpost'>Create Post</Link>
       </nav>
       <Routes> 
-        <Route path='/createpost' element={<div>{<CreatePost token={token}/>}</div>}/>
+        <Route path='/createpost' element={<div>{<CreatePost token={token} posts={ posts } setPosts={ setPosts }/>}</div>}/>
       </Routes>   
-      <Posts posts={ posts }/>
+      <Posts posts={ posts } setPosts={ setPosts } token={token}/>
     </div>
 
   );

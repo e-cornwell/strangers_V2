@@ -17,8 +17,10 @@ form > * {
 
 .singlePost {
   border: 1px solid black;
+  margin: 8px;
+  padding: 8px;
 }
 
 .myPost {
-  background-color: cornsilk;
+  background-color: rgb(29, 222, 45);
 }

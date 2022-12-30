@@ -1,7 +1,8 @@
- import React, { useState } from 'react';
- 
+import React, { useState } from 'react';
 
- const CreatePost = (props) => {
+
+
+const EditPost = (props) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -10,36 +11,51 @@
     const token = props.token;
     const posts = props.posts;
     const setPosts = props.setPosts;
+    const postId = props.postId;
+    const setPostId = props.setPostId;
     
 
-    const handleSubmit = (ev) => {
+    const handleSubmit = async (ev) => {
         ev.preventDefault();
-        fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts', {
-            method: "POST",
+        const response = await fetch(`http://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts/${postId}`, {
+            method: "PATCH",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${ token }`
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
                 post: {
                     title: title,
                     description: description,
                     price: price,
-                    location,
+                    location: location,
                     willDeliver: willDeliver
                 }
             })
-        })  .then(response => response.json())
-            .then(result => {
-                console.log(result)
-                setPosts([result, ...posts])
-            })
-            .catch(error => console.log(error));
-        }
+        });
+        const data = await response.json(); 
+        console.log(data);
+        if(data && data.title){
+            const newPosts = posts.map(post => {
+                if(post._id === postId){
+                    return data;
+                } else {
+                    return post;
+                }
+            });
+            setPosts(newPosts);
+            setTitle('')
+            setDescription('')
+            setPrice('')
+            setLocation('')
+            setWillDeliver('')
+            setPostId(null)
 
-    
-    
+        }
+    }
+
     return (
+
         <form onSubmit={ handleSubmit }>
             <input 
                 placeholder='title'
@@ -69,9 +85,9 @@
                 </select>
             </label>
             
-            <button>Submit Post</button>
+            <button>Edit Post</button>
         </form>
-    );
+    );  
 };
 
- export default CreatePost;
+export default EditPost;
