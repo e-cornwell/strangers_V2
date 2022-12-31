@@ -8,15 +8,16 @@ const Posts = (props) => {
     const setPosts = props.setPosts;
     const posts = props.posts;
     const token = props.token;
+    const fetchPosts = props.fetchPosts;
 
     return (
         <div>
             <h1>Posts</h1>
-            {
+            {/* {
                 postId 
                     ? <EditPost posts={posts} setPosts={setPosts} postId={postId} setPostId={setPostId} token={token}/>
                     : <CreatePost posts={posts} setPosts={setPosts} token={token}/>
-            }
+            } */}
 
             {posts.map((post)=> {
                 
@@ -31,7 +32,7 @@ const Posts = (props) => {
                         <p>Location: {post.location}</p>
                         <p>Will Deliver: {post.willDeliver}</p>
                         { post.isAuthor ? <button onClick={()=> {EditPost, setPostId(post._id)}}>Edit</button> : null }
-                        { post.isAuthor ? <button onClick={()=> {DeletePost(post._id, token, posts, setPosts)}}>Delete</button> : null }
+                        { post.isAuthor ? <button onClick={()=> {DeletePost(post._id, token, posts, setPosts, fetchPosts)}}>Delete</button> : null }
                     </div>
                 );
             })}

@@ -24,9 +24,8 @@ const App = ()=> {
           'Authorization': `Bearer ${token}`
         },
       })
-      const json = await response.json();
-      //console.log(json)
-      setPosts(json.data.posts)
+    const json = await response.json();
+    setPosts(json.data.posts)
       
   };
 
@@ -53,7 +52,7 @@ const App = ()=> {
   useEffect(()=> {
     exchangeTokenForUser();
     fetchPosts();
-  }, [token]);
+  }, []);
 
   const logout = () => {
     window.localStorage.removeItem('token');
@@ -64,6 +63,7 @@ const App = ()=> {
   return (
     <div>
       <h1>Strangers Things V2</h1>
+
       {/* <nav>
         <Link to='/posts'>Posts ({posts.length})</Link>
         <Link to='/login'>Login</Link>
@@ -74,9 +74,15 @@ const App = ()=> {
         <Route path='/login' element={ <div>Login</div>} />} />
         <Route path='/register' element={ <div>Register</div>} />} />
       </Routes>  */}
+
       {
-        user._id ? <div>Welcome { user.username } <button onClick={ logout }>Logout</button> </div> : null
+        user._id ? <div>Welcome { user.username } <button onClick={ logout }>Logout</button> 
+          <Routes> 
+            <Route path='/createpost' element={<CreatePost token={token} posts={ posts } setPosts={ setPosts } fetchPosts={fetchPosts} />}/>
+          </Routes>  
+        </div> : null
       }
+      
       {
         !user._id ? (
         <div>
@@ -84,16 +90,12 @@ const App = ()=> {
           <Login exchangeTokenForUser={ exchangeTokenForUser }/>
         </div>) : null
       }
-      <nav>
-        <Link to='/createpost'>Create Post</Link>
-      </nav>
-      <Routes> 
-        <Route path='/createpost' element={<div>{<CreatePost token={token} posts={ posts } setPosts={ setPosts }/>}</div>}/>
-      </Routes>   
-      <Posts posts={ posts } setPosts={ setPosts } token={token}/>
-    </div>
 
+      <Posts posts={ posts } setPosts={ setPosts } token={token} fetchPosts={fetchPosts}/>
+
+    </div>
   );
 };
+
 const root = ReactDOM.createRoot(document.querySelector('#root'));
 root.render(<HashRouter><App /></HashRouter>);

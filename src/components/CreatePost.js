@@ -10,6 +10,7 @@
     const token = props.token;
     const posts = props.posts;
     const setPosts = props.setPosts;
+    const fetchPosts = props.fetchPosts;
     
 
     const handleSubmit = (ev) => {
@@ -32,7 +33,8 @@
         })  .then(response => response.json())
             .then(result => {
                 console.log(result)
-                setPosts([result, ...posts])
+                setPosts([...posts, result]);
+                fetchPosts();
             })
             .catch(error => console.log(error));
         }
