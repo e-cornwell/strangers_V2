@@ -6,15 +6,12 @@ import Register from './components/Register';
 import Posts from './components/Posts';
 import CreatePost from './components/CreatePost';
 
-//import DeletePost from './components/DeletePost';
-
-
 
 const App = ()=> {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState({});
   const [token, setToken] = useState(null);
-  
+   
 
   const fetchPosts = async () => {
     const response = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts',
@@ -52,17 +49,38 @@ const App = ()=> {
   useEffect(()=> {
     exchangeTokenForUser();
     fetchPosts();
-  }, []);
+  }, [token]);
 
   const logout = () => {
     window.localStorage.removeItem('token');
     setUser({});
   }
 
-  
   return (
     <div>
       <h1>Strangers Things V2</h1>
+
+      {
+        user._id ? 
+          <div>Welcome { user.username } <button onClick={ logout }>Logout</button>
+          <CreatePost token={token} posts={ posts } setPosts={ setPosts } fetchPosts={fetchPosts}/>
+        </div> : null
+      }
+
+      {
+        !user._id ? (
+        <div>
+          <Register />
+          <Login exchangeTokenForUser={ exchangeTokenForUser }/>
+        </div>) : null
+      }
+      
+       
+      <Posts posts={ posts } setPosts={ setPosts } token={token} fetchPosts={fetchPosts}/>
+
+    </div>
+  );
+};
 
       {/* <nav>
         <Link to='/posts'>Posts ({posts.length})</Link>
@@ -74,28 +92,6 @@ const App = ()=> {
         <Route path='/login' element={ <div>Login</div>} />} />
         <Route path='/register' element={ <div>Register</div>} />} />
       </Routes>  */}
-
-      {
-        user._id ? <div>Welcome { user.username } <button onClick={ logout }>Logout</button> 
-          <Routes> 
-            <Route path='/createpost' element={<CreatePost token={token} posts={ posts } setPosts={ setPosts } fetchPosts={fetchPosts} />}/>
-          </Routes>  
-        </div> : null
-      }
-      
-      {
-        !user._id ? (
-        <div>
-          <Register />
-          <Login exchangeTokenForUser={ exchangeTokenForUser }/>
-        </div>) : null
-      }
-
-      <Posts posts={ posts } setPosts={ setPosts } token={token} fetchPosts={fetchPosts}/>
-
-    </div>
-  );
-};
 
 const root = ReactDOM.createRoot(document.querySelector('#root'));
 root.render(<HashRouter><App /></HashRouter>);

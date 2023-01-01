@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import EditPost from './EditPost';
-import CreatePost from './CreatePost';
 import DeletePost from './DeletePost';
 
 const Posts = (props) => {
@@ -9,15 +8,11 @@ const Posts = (props) => {
     const posts = props.posts;
     const token = props.token;
     const fetchPosts = props.fetchPosts;
+    
 
     return (
         <div>
             <h1>Posts</h1>
-            {/* {
-                postId 
-                    ? <EditPost posts={posts} setPosts={setPosts} postId={postId} setPostId={setPostId} token={token}/>
-                    : <CreatePost posts={posts} setPosts={setPosts} token={token}/>
-            } */}
 
             {posts.map((post)=> {
                 

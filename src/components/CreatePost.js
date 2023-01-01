@@ -1,7 +1,7 @@
- import React, { useState } from 'react';
+import React, { useState } from 'react';
  
 
- const CreatePost = (props) => {
+const CreatePost = (props) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -17,10 +17,10 @@
         ev.preventDefault();
         fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts', {
             method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${ token }`
-            },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${ token }`
+                },
             body: JSON.stringify({
                 post: {
                     title: title,
@@ -32,17 +32,16 @@
             })
         })  .then(response => response.json())
             .then(result => {
-                console.log(result)
                 setPosts([...posts, result]);
                 fetchPosts();
             })
-            .catch(error => console.log(error));
-        }
+        .catch(error => console.log(error));
+    }
 
     
     
     return (
-        <form onSubmit={ handleSubmit }>
+        <form>
             <input 
                 placeholder='title'
                 value={ title } 
@@ -63,17 +62,15 @@
                 value={ location } 
                 onChange={ ev => setLocation(ev.target.value)} 
             />
-            <label>
-                Will Deliver:   
-                <select value={ willDeliver } onChange={ ev => setWillDeliver(ev.target.value)}>
-                    <option value='true'>Yes</option>
-                    <option value='false'>No</option>
-                </select>
-            </label>
+            <input 
+                placeholder='Will be Delivered? true/false'
+                value={ willDeliver } 
+                onChange={ ev => setWillDeliver(ev.target.value)} 
+            />
             
-            <button>Submit Post</button>
+            <button onClick={ handleSubmit }>Submit Post</button>
         </form>
     );
 };
 
- export default CreatePost;
+export default CreatePost;
