@@ -32,7 +32,7 @@ const EditPost = (props) => {
             })
         });
         const data = await response.json(); 
-        console.log(data);
+        
         if(data && data.title){
             const newPosts = posts.map(post => {
                 if(post._id === postId){

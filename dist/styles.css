@@ -24,3 +24,11 @@ form > * {
 .myPost {
   background-color: rgb(29, 222, 45);
 }
+
+.mainNav {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  padding: 8px;
+  background-color: turquoise;
+}

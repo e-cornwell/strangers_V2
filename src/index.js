@@ -58,14 +58,21 @@ const App = ()=> {
 
   return (
     <div>
-      <h1>Strangers Things V2</h1>
-
+      
+      <nav className='mainNav'>
+        <h1>Strangers Things V2</h1>
+        {
+          user._id ? 
+            <div>Welcome { user.username } <button onClick={ logout }>Logout</button>
+          </div> : null
+        }
+      </nav>
       {
         user._id ? 
-          <div>Welcome { user.username } <button onClick={ logout }>Logout</button>
           <CreatePost token={token} posts={ posts } setPosts={ setPosts } fetchPosts={fetchPosts}/>
-        </div> : null
+         : null
       }
+      
 
       {
         !user._id ? (
@@ -75,7 +82,7 @@ const App = ()=> {
         </div>) : null
       }
       
-       
+       <h1>Posts</h1>
       <Posts posts={ posts } setPosts={ setPosts } token={token} fetchPosts={fetchPosts}/>
 
     </div>

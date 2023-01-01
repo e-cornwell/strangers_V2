@@ -12,8 +12,6 @@ const Posts = (props) => {
 
     return (
         <div>
-            <h1>Posts</h1>
-
             {posts.map((post)=> {
                 
                 return (
