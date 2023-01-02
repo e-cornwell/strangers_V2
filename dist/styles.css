@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: verdana;
 }
@@ -16,7 +20,7 @@ form > * {
 }
 
 .singlePost {
-  border: 1px solid black;
+  border-bottom: 1px solid black;
   margin: 8px;
   padding: 8px;
 }
@@ -31,4 +35,49 @@ form > * {
   border: 1px solid black;
   padding: 8px;
   background-color: turquoise;
+}
+
+.createPost {
+  width: 400px;
+  height: fit-content;
+  border: 1px solid black;
+  margin-top: 4px;
+}
+
+.createPostDiv {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.allPosts {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+}
+
+.justPosts {
+  overflow-y: scroll;
+  height: 750px;
+  
+}
+
+.search {
+  margin: none;
+  padding: none;
+}
+
+fieldset.searchField {
+  background-color: rgb(246, 143, 246);
+  border: 1px solid black;
+  border-top: none;
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  padding: 8px;
+}
+
+#keywords {
+  width: 400px;
+  margin-left: 8px;
+  /* border: 1px solid black; */
 }

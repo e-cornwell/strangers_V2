@@ -40,7 +40,9 @@ const CreatePost = (props) => {
     
     
     return (
-        <form>
+        
+        <form className='createPost'>
+            <h3>Create a Post</h3>
             <input 
                 placeholder='title'
                 value={ title } 
@@ -71,7 +73,7 @@ const CreatePost = (props) => {
                 <label>No</label>
             </fieldset>
             
-            <button onClick={ handleSubmit }>Submit Post</button>
+            <button onClick={ handleSubmit }>Create Post</button>
         </form>
     );
 };

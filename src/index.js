@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Posts from './components/Posts';
 import CreatePost from './components/CreatePost';
+import Search from './components/Search';
 
 
 const App = ()=> {
@@ -67,24 +68,34 @@ const App = ()=> {
           </div> : null
         }
       </nav>
-      {
-        user._id ? 
-          <CreatePost token={token} posts={ posts } setPosts={ setPosts } fetchPosts={fetchPosts}/>
-         : null
-      }
-      
 
-      {
-        !user._id ? (
-        <div>
-          <Register />
-          <Login exchangeTokenForUser={ exchangeTokenForUser }/>
-        </div>) : null
-      }
-      
-       <h1>Posts</h1>
-      <Posts posts={ posts } setPosts={ setPosts } token={token} fetchPosts={fetchPosts}/>
+      <div className='search'>
+        <Search />
+      </div>
 
+      <div className='allPosts'>
+          
+        <div className='createPostDiv'>
+          {
+            user._id ? 
+              <CreatePost token={token} posts={ posts } setPosts={ setPosts } fetchPosts={fetchPosts}/>
+              : null
+          }
+        </div>
+
+        {
+          !user._id ? (
+          <div>
+            <Register />
+            <Login exchangeTokenForUser={ exchangeTokenForUser }/>
+          </div>) : null
+        }
+        
+        <div className='justPosts'>
+          <h1>Posts</h1>
+          <Posts posts={ posts } setPosts={ setPosts } token={token} fetchPosts={fetchPosts}/>
+        </div>
+      </div>  
     </div>
   );
 };
