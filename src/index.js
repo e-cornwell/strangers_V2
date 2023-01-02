@@ -93,8 +93,11 @@ const App = ()=> {
         
         <div className='justPosts'>
           <h1>Posts</h1>
-          <Posts posts={ posts } setPosts={ setPosts } token={token} fetchPosts={fetchPosts}/>
+          <div className='innerScroll'>
+            <Posts posts={ posts } setPosts={ setPosts } token={token} fetchPosts={fetchPosts}/>
+          </div>
         </div>
+
       </div>  
     </div>
   );

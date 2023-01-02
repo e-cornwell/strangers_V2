@@ -47,18 +47,32 @@ form > * {
 .createPostDiv {
   display: flex;
   justify-content: flex-end;
+  background-color: ivory;
 }
 
 .allPosts {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: space-around;
+  justify-content: space-between;
+  background-color: ivory;
+  background-size:cover;
+}
+
+.justPosts > h1 {
+  padding: 8px;
+  margin: 0;
+  border: 1px solid black;
+  border-top: none;
 }
 
 .justPosts {
+  background-color: ivory;
+}
+
+.innerScroll {
   overflow-y: scroll;
-  height: 750px;
-  
+  height: 735px;
+  border-left: 1px solid black;
 }
 
 .search {
@@ -79,5 +93,22 @@ fieldset.searchField {
 #keywords {
   width: 400px;
   margin-left: 8px;
-  /* border: 1px solid black; */
+}
+
+/*Customized scroll bar*/
+/* width */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(56, 55, 55, 0.426);
+  border-radius: 10px;
 }
