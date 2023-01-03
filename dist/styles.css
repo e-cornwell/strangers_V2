@@ -2,6 +2,8 @@ body {
   font-family: verdana;
   background-image: url('https://images.unsplash.com/photo-1555505019-8c3f1c4aba5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 form {
@@ -24,17 +26,21 @@ form > * {
 }
 
 .myPost {
-  background-color: rgb(29, 222, 45);
+  background-color: rgba(41, 72, 41, 0.568);
 }
 
 .mainNav {
   display: flex;
   justify-content: space-between;
-  border: 1px solid black;
   padding: 8px;
   background-image: url(oxygen-nature-header.webp);
   background-size: cover;
   color: ivory;
+}
+
+.mainNav > h1 {
+  font-size: 55px;
+  margin: 16px
 }
 
 .createPost {
@@ -48,19 +54,24 @@ form > * {
 .createPostDiv {
   display: flex;
   justify-content: flex-end;
-  color:rgba(255, 255, 240, 0.821);
+  color:rgba(249, 204, 120, 0.964);
+  -webkit-text-stroke-width: 0.25px;
+  -webkit-text-stroke-color: black;
 }
 
 .createPost > fieldset {
   border-color: rgba(38, 75, 35, 0.542);
-  color: rgba(255, 255, 240, 0.729);
+  color: rgba(249, 204, 120, 0.964);
 }
 
 .login {
   width: 400px;
   height: fit-content;
-  border: 1px solid black;
-  background-color: ivory;
+  background-color: rgba(66, 29, 2, 0.568);
+  box-shadow: inset 0 0 5px grey;
+  color:rgba(249, 204, 120, 0.964);
+  -webkit-text-stroke-width: 0.25px;
+  -webkit-text-stroke-color: black;
 }
 
 .allPosts {
@@ -76,17 +87,23 @@ form > * {
 }
 
 .justPosts {
-  background-color: rgba(153, 100, 48, 0.607);
+  background-color: rgba(103, 67, 32, 0.607);
+  color:rgba(249, 204, 120, 0.964);
+  -webkit-text-stroke-width: 0.40px;
+  -webkit-text-stroke-color: black;
 }
 
 .justPosts > h1 {
   background: rgba(66, 29, 2, 0.568);
   box-shadow: inset 0 0 5px grey;
+  color:rgba(249, 204, 120, 0.907);
+  -webkit-text-stroke-width: 0.50px;
+  -webkit-text-stroke-color: black;
 }
 
 .innerScroll {
   overflow-y: scroll;
-  height: 735px;
+  height: 710px;
 }
 
 .search {
@@ -100,6 +117,9 @@ fieldset.searchField {
   align-items: center;
   margin: 0px;
   padding: 8px;
+  color:rgba(249, 204, 120, 0.964);
+  -webkit-text-stroke-width: 0.25px;
+  -webkit-text-stroke-color: black;
 }
 
 #keywords {

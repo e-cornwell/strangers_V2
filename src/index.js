@@ -61,7 +61,7 @@ const App = ()=> {
     <div>
       
       <nav className='mainNav'>
-        <h1>Strangers Things V2</h1>
+        <h1>Strangers Things</h1>
         {
           user._id ? 
             <div>Welcome { user.username } <button onClick={ logout }>Logout</button>

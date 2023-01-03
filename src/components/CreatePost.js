@@ -33,12 +33,15 @@ const CreatePost = (props) => {
             .then(result => {
                 setPosts([...posts, result]);
                 fetchPosts();
+                setTitle('')
+                setDescription('')
+                setPrice('')
+                setLocation('')
+                setWillDeliver({})
             })
         .catch(error => console.log(error));
     }
 
-    
-    
     return (
         
         <form className='createPost'>
