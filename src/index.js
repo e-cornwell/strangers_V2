@@ -85,7 +85,7 @@ const App = ()=> {
 
         {
           !user._id ? (
-          <div>
+          <div className='login'>
             <Register />
             <Login exchangeTokenForUser={ exchangeTokenForUser }/>
           </div>) : null

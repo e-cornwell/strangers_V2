@@ -36,6 +36,7 @@ const Login = (props)=> {
   
   return (
     <form onSubmit = { login } >
+        <h3>Login</h3>
         <input 
           placeholder='username'
           value={ username } 
