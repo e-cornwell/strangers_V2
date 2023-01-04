@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import EditPost from './EditPost';
 import DeletePost from './DeletePost';
-import CreatePost from './CreatePost';
-
 
 const Posts = (props) => {
     const [postId, setPostId] = useState('')

@@ -6,7 +6,7 @@ import Register from './components/Register';
 import Posts from './components/Posts';
 import CreatePost from './components/CreatePost';
 import Search from './components/Search';
-import EditPost from './components/EditPost';
+// import EditPost from './components/EditPost';
 import Messages from './components/Messages';
 
 
@@ -14,9 +14,12 @@ const App = ()=> {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState({});
   const [token, setToken] = useState(null);
+  const [messages, setMessages] = useState({});
 
   const userId = user._id;
-  
+
+  console.log(user.messages)
+
   
    
 
@@ -30,6 +33,7 @@ const App = ()=> {
       })
     const json = await response.json();
     setPosts(json.data.posts)
+    console.log(json.data)
       
   };
 
@@ -46,6 +50,8 @@ const App = ()=> {
       .then(response => response.json())
       .then(result => {
         const user = result.data;
+        const messages = result.data.messages
+        setMessages(messages);
         setUser(user);
         setToken(token);
       })
@@ -76,8 +82,7 @@ const App = ()=> {
       </nav>
 
       <div className='search'>
-        <Search />
-        <Link to='/messages'>Messages</Link> 
+        <Search /> 
       </div>
 
       <div className='allPosts'>
@@ -88,9 +93,10 @@ const App = ()=> {
               <CreatePost token={token} posts={ posts } setPosts={ setPosts } fetchPosts={fetchPosts}/>
               : null
           }
-          {/* {
-            user._id ? <Messages /> : null
-          } */}
+          
+          {
+            user._id ? <Messages user={user} posts={ posts } messages={messages} /> : null
+          }
         </div>
 
         {

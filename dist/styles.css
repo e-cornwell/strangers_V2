@@ -53,10 +53,31 @@ form > * {
 
 .createPostDiv {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: flex-start;
   color:rgba(249, 204, 120, 0.964);
   -webkit-text-stroke-width: 0.25px;
   -webkit-text-stroke-color: black;
+}
+
+.messages {
+  background-color: rgba(66, 29, 2, 0.568);
+  height: 375px;
+  width: 500px;
+  box-shadow: inset 0 0 5px grey;
+  color:rgba(249, 204, 120, 0.907);
+  -webkit-text-stroke-width: 0.50px;
+  -webkit-text-stroke-color: black;
+}
+
+.messages > h1 {
+  padding: 8px;
+  margin: 0;
+  box-shadow: inset 0 0 5px grey;
+}
+
+.msgList {
+  padding: 8px;
 }
 
 .createPost > fieldset {
@@ -81,11 +102,6 @@ form > * {
   background-size:cover;
 }
 
-.justPosts > h1 {
-  padding: 8px;
-  margin: 0;  
-}
-
 .justPosts {
   background-color: rgba(103, 67, 32, 0.607);
   color:rgba(249, 204, 120, 0.964);
@@ -94,6 +110,8 @@ form > * {
 }
 
 .justPosts > h1 {
+  padding: 8px;
+  margin: 0;
   background: rgba(66, 29, 2, 0.568);
   box-shadow: inset 0 0 5px grey;
   color:rgba(249, 204, 120, 0.907);
