@@ -107,8 +107,16 @@ form > * {
 }
 
 .search {
+  display: flex;
+  align-items: center;
   margin: none;
   padding: none;
+
+}
+
+.search > a {
+  color:rgba(249, 204, 120, 0.964);
+  
 }
 
 fieldset.searchField {

@@ -1,7 +1,6 @@
 
 
 const DeletePost = async (postIdToDelete, token, posts, setPosts, fetchPosts) => {
-    //console.log(token)
 
     const response = await fetch(`https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts/${postIdToDelete}`, 
     {

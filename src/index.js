@@ -6,12 +6,18 @@ import Register from './components/Register';
 import Posts from './components/Posts';
 import CreatePost from './components/CreatePost';
 import Search from './components/Search';
+import EditPost from './components/EditPost';
+import Messages from './components/Messages';
 
 
 const App = ()=> {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState({});
   const [token, setToken] = useState(null);
+
+  const userId = user._id;
+  
+  
    
 
   const fetchPosts = async () => {
@@ -71,6 +77,7 @@ const App = ()=> {
 
       <div className='search'>
         <Search />
+        <Link to='/messages'>Messages</Link> 
       </div>
 
       <div className='allPosts'>
@@ -81,6 +88,9 @@ const App = ()=> {
               <CreatePost token={token} posts={ posts } setPosts={ setPosts } fetchPosts={fetchPosts}/>
               : null
           }
+          {/* {
+            user._id ? <Messages /> : null
+          } */}
         </div>
 
         {
@@ -92,10 +102,10 @@ const App = ()=> {
         }
         
         <div className='justPosts'>
-          <h1>Posts</h1>
-          <div className='innerScroll'>
-            <Posts posts={ posts } setPosts={ setPosts } token={token} fetchPosts={fetchPosts}/>
-          </div>
+            <h1>Posts</h1>
+            <div className='innerScroll'>
+              <Posts posts={ posts } setPosts={ setPosts } token={token} fetchPosts={fetchPosts} userId={userId} />
+            </div>
         </div>
 
       </div>  
