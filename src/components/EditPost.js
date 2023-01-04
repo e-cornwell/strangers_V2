@@ -11,8 +11,6 @@ const EditPost = (props) => {
     const setPosts = props.setPosts;
     const fetchPosts = props.fetchPosts;
 
-    
-
     const handleSubmit = async (ev) => {
         ev.preventDefault();
         const response = await fetch(`http://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts/${postId}`, {

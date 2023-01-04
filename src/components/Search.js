@@ -2,7 +2,6 @@ import React from 'react';
 
 const Search = () => {
 
-
     return (
         <fieldset className='searchField'>
             <label htmlFor="keywords">Search All Posts</label>

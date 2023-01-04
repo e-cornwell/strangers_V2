@@ -1,12 +1,11 @@
 import ReactDOM from 'react-dom/client';
 import React, { useState, useEffect } from 'react';
-import { HashRouter, Routes, Route, Link} from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import Posts from './components/Posts';
 import CreatePost from './components/CreatePost';
 import Search from './components/Search';
-// import EditPost from './components/EditPost';
 import Messages from './components/Messages';
 
 
@@ -18,11 +17,7 @@ const App = ()=> {
 
   const userId = user._id;
 
-  console.log(user.messages)
-
-  
-   
-
+ 
   const fetchPosts = async () => {
     const response = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts',
      {
@@ -118,17 +113,6 @@ const App = ()=> {
     </div>
   );
 };
-
-      {/* <nav>
-        <Link to='/posts'>Posts ({posts.length})</Link>
-        <Link to='/login'>Login</Link>
-        <Link to='/register'>Register</Link>
-      </nav>
-      <Routes>
-        <Route path='/posts' element= { <div>Posts</div>}/>} />
-        <Route path='/login' element={ <div>Login</div>} />} />
-        <Route path='/register' element={ <div>Register</div>} />} />
-      </Routes>  */}
 
 const root = ReactDOM.createRoot(document.querySelector('#root'));
 root.render(<HashRouter><App /></HashRouter>);

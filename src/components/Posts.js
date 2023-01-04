@@ -13,7 +13,6 @@ const Posts = (props) => {
     const token = props.token;
     const fetchPosts = props.fetchPosts;
     
-
     const handleSubmit = async (ev) => {
         ev.preventDefault();
         await fetch(`https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts/${postId}/messages`, {
